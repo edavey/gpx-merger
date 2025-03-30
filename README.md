@@ -36,8 +36,10 @@ gpx_file_merge path/to/directory
 
 - **Nokogiri**: for XML manipulation. Unfortunately Nokogiri doesn't seem to
   have good support for outputting the final manipulated document with
-  consistent indentation so it's on not very easy to review the output visually.
-  But it is machine_readable!
+  consistent indentation.
+
+- **xmllint**: to apply indentation to the output of Nokogiri. xmllint is a part
+  of the `libxml2-utils` package.
 
 ## What it does
 

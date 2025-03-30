@@ -53,8 +53,10 @@ class GpxMerger
 
   def save_doc
     puts
-    puts "-> saving file: #{doc_name}"
-    File.write(doc_name, doc.to_xml(indent: 2, encoding: "utf-8"))
+    File.write(temp_doc_name, doc.to_xml(indent: 2, encoding: "utf-8"))
+    indent_doc
+    remove_temp_file
+    puts "-> saved file: #{doc_name}"
   end
 
   def merge_files
@@ -67,6 +69,18 @@ class GpxMerger
     end
   end
 
+  def temp_doc_name
+    "#{doc_name}.tmp"
+  end
+
   attr_reader :file_paths, :doc_name
   attr_accessor :doc
+
+  private def indent_doc
+    system "xmllint --format #{temp_doc_name} > #{doc_name}"
+  end
+
+  private def remove_temp_file
+    File.delete(temp_doc_name)
+  end
 end
