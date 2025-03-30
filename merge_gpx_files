@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require "pry-byebug"
 require "nokogiri"
 require_relative "./gpx_merger"
